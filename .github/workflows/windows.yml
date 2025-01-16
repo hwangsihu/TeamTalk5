@@ -16,25 +16,25 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: VS2019Release32
-            vmimage: windows-2019
+          - name: VS2022Release32
+            vmimage: windows-2022
             cmakeplatform: Win32
             dotnetarch: x86
             qtarch: win32_msvc2019
-            qtversion: '5.15.*'
+            qtversion: '5.*'
             msystem: MINGW32
             portablearch: win32
-          - name: VS2019Release64
-            vmimage: windows-2019
+          - name: VS2022Release64
+            vmimage: windows-2022
             cmakeplatform: x64
             dotnetarch: x64
-            qtarch: win64_msvc2019_64
-            qtversion: '6.5.*'
+            qtarch: win64_msvc2022_64
+            qtversion: '6.*'
             qtmodules: 'qtmultimedia qtspeech qtvirtualkeyboard'
             msystem: MINGW64
             portablearch: win64
         exlude:
-          - name: VS2019Release32
+          - name: VS2022Release32
 
     runs-on: ${{ matrix.vmimage }}
     name: ${{ matrix.name }}
@@ -57,11 +57,11 @@ jobs:
 
     - uses: ssciwr/doxygen-install@v1
       with:
-        version: "1.9.8"
+        version: "1.13.2"
 
     - uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.13.1'
         architecture: ${{ matrix.dotnetarch }}
 
     - uses: darenm/Setup-VSTest@v1
