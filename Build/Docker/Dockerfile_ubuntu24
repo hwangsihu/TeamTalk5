@@ -2,13 +2,14 @@ FROM ubuntu:24.04
 
 LABEL Description="TeamTalk for Ubuntu 24.04"
 
-RUN apt update --fix-missing
+RUN apt-get update --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt -y install keyboard-configuration tzdata
-RUN apt install -y \
+RUN apt-get dist-upgrade -y
+RUN apt-get install -y \
 		autoconf \
+		build-essential \
 		cmake \
 		doxygen \
-		g++ \
 		git \
 		junit4 \
 		libasound2-dev \
@@ -31,4 +32,5 @@ RUN apt install -y \
 		wget \
 		xz-utils \
 		yasm
+RUN apt-get clean -y
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 12

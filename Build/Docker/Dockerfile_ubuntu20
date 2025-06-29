@@ -2,14 +2,14 @@ FROM ubuntu:20.04
 
 LABEL Description="TeamTalk for Ubuntu 20.04"
 
-RUN apt update --fix-missing
+RUN apt-get update --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata keyboard-configuration
-# Duplicate of /TeamTalk5/Build/Makefile:depend-ubuntu20
-RUN apt install -y \
+RUN apt-get dist-upgrade -y
+RUN apt-get install -y \
                    autoconf \
+                   build-essential \
                    cmake \
                    doxygen \
-                   g++ \
                    git \
                    junit4 \
                    libasound2-dev \
@@ -32,3 +32,4 @@ RUN apt install -y \
                    qttools5-dev-tools \
                    wget \
                    yasm
+RUN apt-get clean -y
